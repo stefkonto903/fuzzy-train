@@ -1,0 +1,65 @@
+[System]
+Name='train_fuzzy'
+Type='mamdani'
+Version=2.0
+NumInputs=5
+NumOutputs=1
+NumRules=8
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='pos_er'
+Range=[-2000 2000]
+NumMFs=3
+MF1='mf1':'trapmf',[-2500 -2500 -1500 1500]
+MF2='mf2':'gaussmf',[1500 0]
+MF3='mf3':'trapmf',[-1500 1500 2500 2500]
+
+[Input2]
+Name='speed'
+Range=[-20 20]
+NumMFs=2
+MF1='mf1':'trapmf',[-30 -30 -2 1]
+MF2='mf3':'trapmf',[-1 2 30 30]
+
+[Input3]
+Name='pos'
+Range=[-200 2000]
+NumMFs=2
+MF1='mf1':'trapmf',[-992 -288 0 400]
+MF2='mf3':'trapmf',[200 600 2088 2792]
+
+[Input4]
+Name='speed_err'
+Range=[-20 20]
+NumMFs=2
+MF1='mf1':'trapmf',[-34 -21 -10 1]
+MF2='mf3':'trapmf',[-1 10 21 34]
+
+[Input5]
+Name='speed_int'
+Range=[-20 20]
+NumMFs=2
+MF1='mf1':'trapmf',[-23.92 -20 -15 10]
+MF2='mf3':'trapmf',[-10 15 20 23.9]
+
+[Output1]
+Name='output1'
+Range=[-2 2]
+NumMFs=2
+MF1='mf1':'trapmf',[-4.15913357731016 -2.87913357731016 -0.759633577310156 -0.166833577310156]
+MF2='mf3':'trapmf',[0.229645928636779 0.998645928636779 2.54364592863678 3.10864592863678]
+
+[Rules]
+1 0 1 0 0, 1 (1) : 1
+3 0 1 0 0, 2 (1) : 1
+2 1 1 0 0, 2 (1) : 1
+2 2 1 0 0, 1 (1) : 1
+0 0 2 1 0, 1 (1) : 1
+0 0 2 2 0, 2 (1) : 1
+0 0 2 0 1, 1 (1) : 1
+0 0 2 0 2, 2 (1) : 1
